@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it using the metadata below."
+type: software
+title: "Analysis code for 'Examining 400 years of epidemics and pandemics to estimate future burden'"
+abstract: "R code that reproduces every number and pipeline-generated figure in the paper."
+version: "1.0.0"
+license: BSD-3-Clause
+repository-code: "https://github.com/horaciochacon/pandemic_burden_estimation"
+authors:
+  - family-names: "Chacon-Torrico"
+    given-names: "Horacio"
+    orcid: "https://orcid.org/0000-0003-4573-2099"
+    affiliation: "Institute for Health Metrics and Evaluation, University of Washington"
+  - family-names: "Murray"
+    given-names: "Christopher J. L."
+    affiliation: "Institute for Health Metrics and Evaluation, University of Washington"

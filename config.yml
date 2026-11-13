@@ -1,0 +1,206 @@
+# Pandemic Estimation Configuration
+# ------------------------------------------------------------------------------------
+# This configuration file controls the pandemic estimation modeling pipeline.
+# There are four top-level sections:
+#   - default:                   base configuration for the main analysis
+#   - validation:                out-of-sample validation (1950 reference population)
+#   - sensitivity:               cutoff / threshold / start-year sensitivity sweeps
+#   - sensitivity_hiv_excluded:  HIV/AIDS-exclusion sensitivity (src/run_hiv_sensitivity.R)
+
+
+default:
+  # ===================================================================================
+  # Default Configuration
+  # ===================================================================================
+  # General settings
+  pop_reference: !expr 8.2e9                            # Reference population size
+  pop_min: !expr 1e4                                    # Minimum population value
+  deaths_unit: !expr 1e3                                # Unit for death counts
+  base_year: 1600                                       # Base year for analysis
+  file_path: "data/pandemic_events.csv"                 # Input data file path
+
+  # Constants quoted in the paper that are not derivable from the event file
+  historical:
+    total_database_events: 124                          # Epidemic and pandemic events in the full database (Supplementary Data 1)
+    events_ple_qualified: 75                            # PLE-qualifying events after criteria C1-C5. Equals the in_analysis == TRUE count on the Events sheet of Supplementary Data 1. Of these, 61 have onset in 1600-2025 and enter the fitted analysis.
+
+  # Data filtering options (applied only if columns exist in the data file)
+  data_filters:
+    included_only: true                          # Filter to included == 1 events only
+    exclude_hiv: false                           # If true, drop HIV/AIDS events (case-insensitive name match on "HIV"/"AIDS"); used by sensitivity_hiv_excluded profile to test the influence of HIV/AIDS classification on burden estimates
+
+  # Analysis parameters
+  variables:
+    - deaths_scaled                                     # Primary variable to analyze
+  method: "mev"                                         # Extreme value method
+  bulk_distribution: "lognormal"                          # Distribution for bulk component
+  
+  # Burden calculation settings
+  calc_burden: true                                     # Enable burden calculation
+  calc_dalys: true                                    # Enable DALY estimation from the GBD DALY-to-death ratio draws
+  calc_scenarios: true                                 # Enable best/worst plausible scenario projections (SFA-bounded)
+  sfa_bounds: true                                       # Use SFA frontiers for scenario bounds
+
+  # Model options
+  use_constrained_model: true                           # Use constrained mixture model
+
+  # Threshold settings
+  thresholds:
+    deaths_scaled: !expr 3e6                          # Population-scaled death threshold
+    lower_cutoff_deaths_scaled: !expr 1e5               # Lower cutoff for scaled deaths
+    lower_cutoff: !expr 1e5                             # Analytical floor (100 000 2025-equivalent deaths), read throughout the pipeline; run_analysis() overwrites it in memory with lower_cutoff_<variable> when that key exists
+
+  # Draw parameters
+  draws: 10000                                    # Number of draws for uncertainty quantification
+  seed: 12345                                            # Random seed for reproducibility
+  
+  # Bootstrap parameters
+  bootstrap:
+    enabled: true                                       # Enable bootstrap analysis
+    plot: true                                          # Generate bootstrap plots
+  
+  # Window analysis
+  window:
+    default_size: 15                                    # Window size (years) for the sliding-window exceedance counts
+  
+  # Time series parameters
+  time:
+    future_years: 75                                    # Years to forecast
+    use_time_trend: true                                # Use time trend in forecasts
+    model_type: "nb_linear"                                # Time trend model type (constant, linear, quadratic, nb_linear, nb_quadratic, piecewise, nb_piecewise, piecewise_full, nb_piecewise_full, auto)
+    tier1_model_type: "piecewise"                          # Override for Tier 1 (Moderate PLE); falls back to model_type if absent
+    tier2_model_type: "nb_linear"                          # Override for Tier 2 (Catastrophic PLE); falls back to model_type if absent
+    breakpoint_year: 1950                               # Year for intercept shift in piecewise models
+    current_year: 2025                                  # Reference year for forecasts
+
+  # Bulk diagnostics (script-specific overrides for fixed thresholds)
+  bulk_diagnostics:
+    tail_threshold_fixed: !expr 3e6                     # Match the model tail threshold (thresholds.deaths_scaled); gives the 44/17 bulk/tail split the paper reports
+    lower_thresholds: [50000, 75000, 100000, 125000, 150000]  # Candidate lower cutoffs to test
+  
+  # Plotting parameters
+  plots:
+    descriptive: true                                   # Generate descriptive plots
+    tail_mixture: true                                  # Generate mixture model plots
+    tail_mixture_y_title: "Historical probability of exceeding\n2025-equivalent deaths"
+    log_scale: true                                     # Use log scale for plots
+    forecast: true                                      # Generate forecast plots
+    time_trend: true                                    # Plot time trends
+    time_scaled_deaths: true                            # Generate time-scaled death plots
+    time_scaled_deaths_labels: false                    # Include title, subtitle, and caption in time-scaled deaths plot
+    time_scaled_deaths_min: !expr 1e5                   # Hide events below 100k threshold (sub-100k events are for sensitivity only; y-axis range preserved)
+    validation_plot_labels: false                       # Include title, subtitle, and caption in validation plot
+    log_breaks_major: [10, 100, 1000, 10000]             # Major breaks for log-scaled axes
+    point_size: 2                                       # Size of empirical data points in mixture plots
+
+  tables:
+    projection_years: 75                                 # Default period length for summary/scenario tables
+
+  # Output management
+  output:
+    save_plots: true                                     # Save plots to timestamped directories
+    save_tables: true                                     # Save tables to timestamped directories
+    plot_formats: ["png", "svg"]                        # Formats to save plots in (supported: png, svg, pdf, eps)
+
+validation:
+  # ===================================================================================
+  # Validation Configuration
+  # ===================================================================================
+  inherit: default                                      # Inherit from default configuration
+  
+  # General settings
+  pop_reference: !expr 2.59e9                           # Reference population for validation
+  
+  # Analysis parameters
+  calc_burden: false                                    # Disable burden calculation
+  calc_scenarios: false                                 # Disable scenario calculation
+  
+  # Bootstrap settings
+  bootstrap:
+    plot: false                                         # Disable bootstrap plots
+    
+  # Time settings
+  time:
+    current_year: 1950
+    breakpoint_year: 1875                                  # Intercept-shift year for the piecewise rate models in this profile: current_year (1950) − 75, mirroring 1950 = 2025 − 75 in default. NOT a period boundary; the train/test split is train_year_end / test_year_start below
+    model_type: "linear"                                # Main validation uses linear extrapolation
+    tier1_model_type: "linear"                          # Override: no piecewise for validation
+    tier2_model_type: "linear"                          # Override: no piecewise for validation
+
+  # Validation specific parameters
+  train_year_start: 1600                                # Training period start
+  train_year_end: 1950                                  # Training period end
+  test_year_start: 1950                                 # Testing period start
+  test_year_end: 2025                                   # Testing period end
+  window_size: 25                                       # Window size for validation
+  observation_years: [1960, 1970, 1980, 1990, 2000, 2010, 2020, 2025]  # Years for observation comparison
+  
+  plots:
+    descriptive: false                                  # Disable descriptive plots
+    tail_mixture: false                                 # Disable mixture plots
+    log_scale: false                                    # Disable log scale
+    forecast: false                                     # Disable forecast plots
+    time_trend: false                                   # Disable time trend plots
+    time_scaled_deaths: false
+
+sensitivity:
+  # ===================================================================================
+  # Sensitivity Analysis Configuration
+  # ===================================================================================
+  inherit: default                                      # Inherit from default configuration
+  
+  # Draws for sensitivity analysis (matched to the main analysis)
+  draws: 10000                                          # Full draws, matching the main analysis
+  seed: 54321                                           # Random seed for sensitivity analysis
+
+  # Disable SFA scenarios — sensitivity tests core burden, not scenario envelopes
+  sfa_bounds: false
+  calc_scenarios: false
+  calc_dalys: false
+  
+  # Bootstrap settings
+  bootstrap:
+    plot: false                                         # Disable bootstrap plots
+  
+  # Plotting parameters
+  plots:
+    descriptive: false                                  # Disable descriptive plots
+    forecast: false                                     # Disable forecast plots
+    tail_mixture: false                                 # Disable mixture plots
+    time_trend: false                                   # Disable time trend plots
+    time_scaled_deaths: false                           # Disable time-scaled plots
+    time_scaled_deaths_labels: false                    # Include title, subtitle, and caption in time-scaled deaths plot
+    validation_plot_labels: false                       # Include title, subtitle, and caption in validation plot
+  
+  # Parallel processing settings
+  parallel:
+    enabled: true                                       # Enable parallel processing
+    strategy: "future"                                  # Parallel strategy (future, none)
+    workers: 4                                          # Number of parallel workers
+  
+  # Sensitivity analysis parameters
+  sens:
+    year:
+      start_idx: 10                                     # Start index for year range
+      end_idx: 50                                      # End index for year range
+      cutoff: 1600                                      # Year cutoff value
+      base_year: 1600                                   # Base year for analysis
+    
+    threshold:
+      base_thresholds:
+        deaths_scaled: !expr 3e6                        # Base scaled death threshold
+        
+
+sensitivity_hiv_excluded:
+  # ===================================================================================
+  # HIV-exclusion sensitivity
+  # ===================================================================================
+  # Drops HIV/AIDS events from the analytical PLE set and refits everything downstream
+  # (severity model, tier-specific rate model with post-1950 breakpoint, burden forecast).
+  # All other settings inherit from `default`, so direct comparisons against the reference
+  # run isolate the effect of HIV/AIDS classification.
+  inherit: default
+
+  data_filters:
+    included_only: true
+    exclude_hiv: true

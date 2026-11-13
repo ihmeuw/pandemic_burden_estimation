@@ -1,0 +1,78 @@
+name,location,start_year,end_year,deaths,pop,type
+Plague of Athens,"Athens, Greece",-430,-426,88,50000000,Non-Respiratory
+Antonine Plague,Roman Empire,165,180,7500,239000000,Respiratory
+Plague of Cyprian,Roman Empire,249,262,310,234000000,Non-Respiratory
+Plague of Justinian,"North Africa, Europe, West Asia",541,544,57500,261000000,Non-Respiratory
+Plague of Sheroe,Persia,627,628,100,268000000,Non-Respiratory
+Plague of Basra,"Basra, Iraq",688,689,72,226000000,Non-Respiratory
+Japanese smallpox epidemic,Japan,735,737,1250,226000000,Respiratory
+Black Death,"Europe, Middle East, North Africa, Central Asia",1346,1353,50000,450000000,Non-Respiratory
+Hispaniola Smallpox Epidemic,Hispaniola (Caribbean),1507,1519,200,461000000,Respiratory
+Smallpox Epidemic in Mexico,Mexico,1519,1520,6500,461000000,Respiratory
+Cocoliztli Epidemic of 1545-1548,Mexico,1545,1548,10000,449000000,Non-Respiratory
+Cocoliztli Epidemic of 1576,Mexico,1576,1578,2250,513000000,Non-Respiratory
+Second Plague of Venice,"Venice, Italy",1576,1577,50,513000000,Non-Respiratory
+London plague of 1592,"London, England",1592,1593,18,515000000,Non-Respiratory
+London Plague of 1603,"London, England",1603,1603,33,519000000,Non-Respiratory
+London Plague of 1625,"London, England",1625,1625,46,536000000,Non-Respiratory
+Italian Plague of 1629–1631,Italy (Northern),1629,1631,2000,539000000,Non-Respiratory
+London Plague of 1636,"London, England",1636,1637,13,545000000,Non-Respiratory
+Spanish Plague of 1637–1640,Spain,1637,1640,20,545000000,Non-Respiratory
+Spanish Plague of 1646–1652,"Seville, Spain",1646,1652,600,553000000,Non-Respiratory
+Plague in Kingdom of Naples,Italy,1656,1658,1060,561000000,Non-Respiratory
+Smallpox Epidemic in South America,Brazil,1660,1669,64,564000000,Respiratory
+Plague in the Netherlands,"Amsterdam, Netherlands",1663,1664,25,566000000,Non-Respiratory
+Great Plague of London,"London, England",1665,1666,100,568000000,Non-Respiratory
+Plague of Malta,Malta,1675,1676,11,574000000,Non-Respiratory
+Spanish Plague of 1678–1682,Spain,1678,1682,250,576000000,Non-Respiratory
+Plague of Vienna,"Vienna, Austria",1679,1679,76,576000000,Non-Respiratory
+Plague of Prague,Prague,1681,1681,83,578000000,Non-Respiratory
+Great Northern War plague outbreak,Europe,1700,1721,190,603000000,Non-Respiratory
+Great Smallpox Epidemic in Iceland,Iceland,1707,1709,18,603000000,Respiratory
+Great Plague of Marseille,"Marseille, France",1720,1722,120,621000000,Non-Respiratory
+Great Plague of 1738,Balkans,1730,1740,36,631000000,Non-Respiratory
+Cocoliztli Epidemic of 1736 (Matlazahuatl),Mexico,1736,1739,40,631000000,Non-Respiratory
+Dysentery Epidemic in France,France,1738,1742,200,631000000,Non-Respiratory
+Irish Typhus and Dysentery Epidemic,Ireland,1740,1741,80,641000000,Non-Respiratory
+French Typhus Epidemic,France,1741,1742,80,641000000,Non-Respiratory
+1770s Smallpox Epidemic,Western Washington / Pacific Northwest,1770,1780,11,828000000,Respiratory
+Dysentery Epidemic in Sweden,Sweden,1770,1775,35,816000000,Non-Respiratory
+Russian Plague of 1770-1772,Russia (Moscow),1770,1772,76,816000000,Non-Respiratory
+Persian Plague,Persia (Iran),1772,1773,2000,835000000,Non-Respiratory
+French Dysentery Epidemic of 1779,France,1779,1779,175,894000000,Non-Respiratory
+Smallpox Epidemic of Mexico City,Mexico City,1779,1779,18,894000000,Respiratory
+Pandemic Influenza,Global,1781,1782,300,878000000,Respiratory
+Tunisian Plague,Tunisia,1784,1785,18,892000000,Non-Respiratory
+1st Napoleon Russian Campaign Epidemics,"French and Russian soldiers and civilians (Russia, Poland, Lithuania)",1812,1812,190,1036000000,Non-Respiratory
+Ottoman Plague Epidemic,Ottoman Empire,1812,1819,300,1036000000,Non-Respiratory
+Caragea's plague,Wallachia (Romania),1813,1813,60,1036000000,Non-Respiratory
+Cocoliztli Epidemic of 1813 (Mexican Typhus),Mexico,1813,1815,20,1036000000,Non-Respiratory
+First Cholera Pandemic,Global,1817,1824,125,1055000000,Non-Respiratory
+Barcelona epidemic of 1821,"Barcelona, Spain",1821,1821,19,1070000000,Non-Respiratory
+Indian Kala-Azar Epidemics,"India (Bengal, Assam)",1824,1827,75,1090000000,Non-Respiratory
+Second Cholera Pandemic,Global,1826,1837,215,1101000000,Non-Respiratory
+Third Cholera Pandemic,Global,1839,1860,1250,1156000000,Non-Respiratory
+Third plague pandemic,"Global (originated Yunnan, China)",1855,1960,15000,1271000000,Non-Respiratory
+Fourth Cholera Pandemic,Global,1863,1875,700,1344000000,Non-Respiratory
+"Europe, Franco-Prussian War Smallpox Epidemic",Europe,1870,1875,500,1347000000,Respiratory
+Fiji Measles Outbreak,Fiji,1875,1875,40,1387000000,Respiratory
+Russian flu (pandemic),Global,1889,1894,1000,1518000000,Respiratory
+Congolese Sleeping Sickness Epidemic,Congo Free State,1895,1906,500,1569000000,Non-Respiratory
+Japanese dysentery outbreak,Japan,1897,1897,20,1634000000,Non-Respiratory
+Sixth cholera pandemic,"Global (primarily India, Middle East, North Africa, Russia)",1899,1923,8800,1613000000,Non-Respiratory
+China plague (Manchurian plague),"Manchuria, China",1910,1911,60,1759000000,Respiratory
+Austrian invasion in Serbia - Typhus,Serbia,1914,1915,150,1810000000,Non-Respiratory
+Spanish flu,Global,1918,1920,19210,1861000000,Respiratory
+WWI and Russian Revolution - Typhus,Russia,1918,1922,2500,1861000000,Non-Respiratory
+Encephalitis Lethargica Pandemic,Global,1919,1930,500,1861000000,Unknown
+Malian Relapsing Fever Epidemic,Mali (French Sudan),1921,1922,15,1909000000,Non-Respiratory
+Nigerian Meningitis Epidemic,Nigeria,1921,1921,45,1909000000,Respiratory
+Sudanese Relapsing Fever Epidemic,Sudan (Anglo-Egyptian Sudan),1926,1928,200,1987000000,Non-Respiratory
+"Chinese Cholera Epidemic, 1932",China,1932,1933,32,2079000000,Non-Respiratory
+Asian Flu,Global,1957,1958,1100,2853000000,Respiratory
+Hong Kong Flu,Global,1968,1969,2500,3545000000,Respiratory
+HIV/AIDS Pandemic,Global,1981,2025,37506,4529000000,Non-Respiratory
+Southern Sudan visceral leishmaniasis epidemic,Southern Sudan,1983,1994,100,4697000000,Non-Respiratory
+Swine Flu Pandemic 2009,Global,2009,2010,201,6933000000,Respiratory
+Ebola in West Africa,"West Africa (Guinea, Liberia, Sierra Leone)",2013,2016,11,7292000000,Non-Respiratory
+2019-20 COVID-19 Pandemic,Global,2019,2024,17213,7811000000,Respiratory

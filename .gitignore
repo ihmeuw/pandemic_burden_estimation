@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+output/
+Rplots.pdf
+
+# Restricted inputs: obtained separately and placed in data/ (see README, "Input data").
+data/pop_forecast.csv
+data/pop_draws.csv
+data/daly_death_ratio_draws.rds
