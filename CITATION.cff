@@ -5,7 +5,7 @@ title: "Analysis code for 'Examining 400 years of epidemics and pandemics to est
 abstract: "R code that reproduces every number and pipeline-generated figure in the paper."
 version: "1.0.0"
 license: BSD-3-Clause
-repository-code: "https://github.com/horaciochacon/pandemic_burden_estimation"
+repository-code: "https://github.com/ihmeuw/pandemic_burden_estimation"
 authors:
   - family-names: "Chacon-Torrico"
     given-names: "Horacio"
